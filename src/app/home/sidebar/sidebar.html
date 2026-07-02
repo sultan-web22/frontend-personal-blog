@@ -1,1 +1,20 @@
-<p>sidebar works!</p>
+<!-- src/app/features/home/sidebar/sidebar.html -->
+<nav class="responsive-nav">
+  <div class="nav-header">
+    <span class="logo">MyApp</span>
+  </div>
+
+  <ul class="nav-links">
+    @for (cat of userCategories(); track cat) {
+      <li>
+        <button class="nav-item" (click)="navigateToCategory(cat)">
+          <!-- Dynamic initials or placeholder icon -->
+          <span class="nav-icon">{{ cat.substring(0, 2).toUpperCase() }}</span>
+          <span class="nav-label">{{ cat }}</span>
+        </button>
+      </li>
+    } @empty {
+      <li class="nav-loading">Loading...</li>
+    }
+  </ul>
+</nav>
