@@ -1,8 +1,8 @@
-// src/app/features/home/writing-area/writing-area.component.ts
+
 import { Component, inject, signal, effect, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule } from '@angular/forms';
-// import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 import { ISlide,IPost } from '../../core/models/IPost';
 import { HttpClient } from '@angular/common/http';
 import { Environment } from '../../../enviroments/enviroment';
@@ -15,7 +15,7 @@ import { Environment } from '../../../enviroments/enviroment';
   styleUrl: './writingarea.css'
 })
 export class WritingAreaComponent implements OnInit {
-//   private authService = inject(AuthService);
+  private authService = inject(AuthService);
 private readonly storagekey ='storagekey';
 
   selectedCategory = '';
@@ -23,12 +23,9 @@ private readonly storagekey ='storagekey';
   noteText = '';
 slides: ISlide[] = [{content:''}]
   constructor(private http:HttpClient) {
-    /**
-     * This effect automatically runs whenever the authenticated user changes.
-     * It reads the categories signal, updates your template, and pre-selects the first option.
-     */
+
     effect(() => {
-      const user = this.authService.currentUser();
+      const user = this.authService.currentuser;
       const categories = user ? user.categories : [];
 
       if (categories.length > 0 && !this.selectedCategory) {

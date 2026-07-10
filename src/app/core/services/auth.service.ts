@@ -69,6 +69,22 @@ return this._http.post<IloginRes>(this.apiURL+'login',login).pipe(tap(res=>{
 
 }))
 }
+checkifloggedinAndreturnToken(){
+  const token=this.gettokenfromlocalstorage();
+  if(token){
+    const decode = this.decodetoken(token);
+    const exp = decode.exp
+    if(exp>Date.now()){
+     return token
+    }
+  }
+  return null
+}
+currentuser(){
+  const token= this.gettokenfromlocalstorage();
+  
+
+}
 }
 
 

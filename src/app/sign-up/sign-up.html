@@ -1,0 +1,13 @@
+<form [formGroup]= "signupform" ( ngSubmit )="onsubmit()" >
+  <label for="username">username</label>
+<div class="formgroup">
+<input id="username" formControlName="username">
+<div class="error-message">
+@if((f['username'].touched||isSubmitted && f['email'].errors)){
+  <small>
+    please enter a valid email
+  </small>
+}
+</div>
+</div>
+</form>
